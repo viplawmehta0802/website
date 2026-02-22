@@ -32,7 +32,7 @@
         </ul>
         <div class="d-flex align-items-center gap-2 ms-lg-3 mt-3 mt-lg-0">
           <button class="btn btn-outline-warning btn-sm" id="admin-login-btn" type="button" data-bs-toggle="modal" data-bs-target="#adminAuthModal">Admin Login</button>
-          <button class="btn btn-outline-success btn-sm d-none" id="admin-open-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#adminPanel" aria-controls="adminPanel">Admin Panel</button>
+          <button class="btn btn-outline-success btn-sm d-none" id="admin-open-btn" type="button" data-bs-toggle="modal" data-bs-target="#adminPanel">Admin Panel</button>
         </div>
         <div class="dropdown ms-lg-3 mt-3 mt-lg-0">
           <button class="btn btn-outline-light btn-sm dropdown-toggle theme-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -227,6 +227,7 @@
 
   <footer class="py-4 text-center text-light-emphasis">
     ©️ <span id="year"></span> Electrical Engineer Portfolio • VLSI Domain
+    <div class="keyboard-hint">Press <kbd>?</kbd> for keyboard shortcuts</div>
   </footer>
 
   <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
@@ -239,33 +240,71 @@
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p class="text-light-emphasis small mb-2">First login sets your Admin ID and password. Later logins require both.</p>
-          <input type="text" class="form-control mb-2" id="admin-username" placeholder="Enter admin ID" />
-          <input type="password" class="form-control" id="admin-password" placeholder="Enter admin password" />
+          <p class="text-light-emphasis small mb-2">Enter admin credentials to manage portfolio content.</p>
+          <input type="text" class="form-control mb-2" id="admin-username" placeholder="Admin ID" />
+          <input type="password" class="form-control" id="admin-password" placeholder="Password" />
           <div class="small mt-2" id="admin-auth-msg"></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-tech" id="admin-auth-submit">Continue</button>
+          <button type="button" class="btn btn-tech" id="admin-auth-submit">Login</button>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="adminPanel" aria-labelledby="adminPanelLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="adminPanelLabel">Portfolio Admin Panel</h5>
-      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-      <p class="small text-light-emphasis">Edit JSON below and save. Use visibility: "public" or "private" in projects/experience.</p>
-      <textarea class="form-control admin-json" id="admin-json-editor"></textarea>
-      <div class="d-grid gap-2 mt-3">
-        <button class="btn btn-tech" id="admin-save-btn" type="button">Save Content</button>
-        <button class="btn btn-outline-warning" id="admin-reset-btn" type="button">Reset to Default</button>
-        <button class="btn btn-outline-danger" id="admin-logout-btn" type="button">Logout Admin</button>
+  <div class="modal fade" id="adminPanel" tabindex="-1" aria-labelledby="adminPanelLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-fullscreen-lg-down modal-dialog-scrollable">
+      <div class="modal-content admin-modal">
+        <div class="modal-header">
+          <h5 class="modal-title" id="adminPanelLabel">Portfolio Admin Panel</h5>
+          <div class="ms-auto d-flex gap-2 align-items-center">
+            <button class="btn btn-outline-warning btn-sm" id="admin-reset-btn" type="button">Reset All</button>
+            <button class="btn btn-outline-danger btn-sm" id="admin-logout-btn" type="button">Logout</button>
+            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="modal-body p-0">
+          <ul class="nav nav-tabs admin-tabs px-3 pt-2" id="adminTabs" role="tablist">
+            <li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-hero" type="button" role="tab">Hero</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-about" type="button" role="tab">About</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-skills" type="button" role="tab">Skills</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-projects" type="button" role="tab">Projects</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-experience" type="button" role="tab">Experience</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-contact" type="button" role="tab">Contact</button></li>
+          </ul>
+          <div class="tab-content p-3" id="adminTabContent">
+            <!-- Hero Tab -->
+            <div class="tab-pane fade show active" id="tab-hero" role="tabpanel">
+              <div id="admin-hero-form"></div>
+            </div>
+            <!-- About Tab -->
+            <div class="tab-pane fade" id="tab-about" role="tabpanel">
+              <div id="admin-about-form"></div>
+            </div>
+            <!-- Skills Tab -->
+            <div class="tab-pane fade" id="tab-skills" role="tabpanel">
+              <div id="admin-skills-form"></div>
+            </div>
+            <!-- Projects Tab -->
+            <div class="tab-pane fade" id="tab-projects" role="tabpanel">
+              <div id="admin-projects-form"></div>
+            </div>
+            <!-- Experience Tab -->
+            <div class="tab-pane fade" id="tab-experience" role="tabpanel">
+              <div id="admin-experience-form"></div>
+            </div>
+            <!-- Contact Tab -->
+            <div class="tab-pane fade" id="tab-contact" role="tabpanel">
+              <div id="admin-contact-form"></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="small" id="admin-save-msg"></div>
+          <button class="btn btn-tech" id="admin-save-btn" type="button">Save All Changes</button>
+        </div>
       </div>
-      <div class="small mt-3" id="admin-save-msg"></div>
     </div>
   </div>
 
