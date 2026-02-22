@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VLSI Portfolio | Electrical Engineer</title>
+  <meta name="description" content="Portfolio of an Electrical Engineer (IIT Bombay, VLSI) currently working as DFT Engineer at onsemi Research." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="theme-neon">
+  <canvas id="chip-grid" aria-hidden="true"></canvas>
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-nav">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#home">VLSI<span class="brand-dot">.</span>Engineer</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2 ms-lg-3 mt-3 mt-lg-0">
+          <button class="btn btn-outline-warning btn-sm" id="admin-login-btn" type="button" data-bs-toggle="modal" data-bs-target="#adminAuthModal">Admin Login</button>
+          <button class="btn btn-outline-success btn-sm d-none" id="admin-open-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#adminPanel" aria-controls="adminPanel">Admin Panel</button>
+        </div>
+        <div class="dropdown ms-lg-3 mt-3 mt-lg-0">
+          <button class="btn btn-outline-light btn-sm dropdown-toggle theme-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Theme
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+            <li><button class="dropdown-item theme-option" data-theme="theme-neon" type="button">Neon VLSI</button></li>
+            <li><button class="dropdown-item theme-option" data-theme="theme-nvidia" type="button">NVIDIA Black/Green</button></li>
+            <li><button class="dropdown-item theme-option" data-theme="theme-royal" type="button">Royal Dark Blue</button></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header id="home" class="hero d-flex align-items-center">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <p class="eyebrow mb-2" id="hero-eyebrow">Electrical Engineer • IIT Bombay • VLSI Specialist</p>
+          <h1 class="display-4 fw-bold mb-3" id="hero-title"></h1>
+          <p class="lead text-light-emphasis mb-4" id="hero-subtitle"></p>
+          <div class="d-flex gap-3 flex-wrap">
+            <a href="#projects" class="btn btn-tech btn-lg">View Projects</a>
+            <a href="https://www.linkedin.com/in/viplawkumar0802/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-lg">Hire / Connect</a>
+            <a href="Viplaw_Resume_Off_2.pdf" target="_blank" class="btn btn-outline-info btn-lg" id="hero-resume-btn">View Resume</a>
+          </div>
+          <div class="hero-metrics mt-5" id="hero-metrics"></div>
+        </div>
+        <div class="col-lg-5">
+          <div class="profile-shell mb-4">
+            <div class="profile-ring"></div>
+            <img src="IMG-20250828-WA0069.jpg" class="profile-image" alt="Viplaw Kumar portrait" />
+            <div class="profile-glow"></div>
+          </div>
+          <div class="chip-card">
+            <p class="mb-2 text-uppercase small text-info">Current Focus</p>
+            <h4 class="fw-semibold mb-3">Design For Test (DFT)</h4>
+            <ul class="list-unstyled mb-0" id="focus-list"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about" class="section-pad">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6">
+            <h2 class="section-title">About Me</h2>
+            <p id="about-p1"></p>
+            <p id="about-p2"></p>
+          </div>
+          <div class="col-lg-6">
+            <div class="skills-grid" id="skills-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="section-pad alt-bg">
+      <div class="container">
+        <h2 class="section-title mb-4">Education & Technical Foundation</h2>
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <article class="project-card h-100">
+              <h5>M.Tech, Electrical Engineering — IIT Bombay</h5>
+              <p class="mb-2">2023–2025 • CPI: 9.06</p>
+              <p class="mb-0">Specialization across VLSI design, testing and verification, physical design, and computer architecture.</p>
+            </article>
+          </div>
+          <div class="col-lg-6">
+            <article class="project-card h-100">
+              <h5>B.Tech, Electronics System — BIT Mesra Ranchi</h5>
+              <p class="mb-2">2017–2021 • CPI: 8.03</p>
+              <p class="mb-0">Strong base in digital systems, embedded design, and hardware-oriented problem solving.</p>
+            </article>
+          </div>
+        </div>
+        <div class="row g-4 mt-1">
+          <div class="col-lg-6">
+            <article class="project-card h-100">
+              <h5>Technical Proficiency</h5>
+              <p class="mb-2"><strong>Languages:</strong> Verilog, VHDL, C, C++, MATLAB, NGSpice</p>
+              <p class="mb-2"><strong>Tools:</strong> Quartus Prime, ModelSim, OpenLane, PrimeTime, TetraMAX</p>
+              <p class="mb-0"><strong>Platforms:</strong> DE0-Nano Board, XEN 10 Board</p>
+            </article>
+          </div>
+          <div class="col-lg-6">
+            <article class="project-card h-100">
+              <h5>Relevant Coursework</h5>
+              <div class="skills-grid">
+                <span class="skill-pill">VLSI Design</span>
+                <span class="skill-pill">VLSI Design Lab</span>
+                <span class="skill-pill">Foundation of VLSI CAD</span>
+                <span class="skill-pill">Processor Design</span>
+                <span class="skill-pill">Testing & Verification</span>
+                <span class="skill-pill">Embedded System Design</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section-pad alt-bg">
+      <div class="container">
+        <h2 class="section-title mb-4">Highlighted Projects</h2>
+        <div class="filter-wrap mb-4">
+          <button class="filter-btn active" data-filter="all" type="button">All</button>
+          <button class="filter-btn" data-filter="dft" type="button">DFT/Testing</button>
+          <button class="filter-btn" data-filter="processor" type="button">Processor</button>
+          <button class="filter-btn" data-filter="physical" type="button">Physical/STA</button>
+          <button class="filter-btn" data-filter="compiler" type="button">Compiler</button>
+        </div>
+        <div class="row g-4" id="projects-list"></div>
+      </div>
+    </section>
+
+    <section id="experience" class="section-pad">
+      <div class="container">
+        <h2 class="section-title mb-4">Experience</h2>
+        <div id="experience-list"></div>
+      </div>
+    </section>
+
+    <section id="certifications" class="section-pad alt-bg">
+      <div class="container">
+        <h2 class="section-title mb-4">Certifications & Milestones</h2>
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <article class="project-card h-100">
+              <h5>Static Timing Analysis — Udemy (Jun 2024 – Aug 2024)</h5>
+              <p class="mb-0">Covered setup/hold analysis, jitter and OCV-aware timing interpretation for robust sign-off thinking.</p>
+            </article>
+          </div>
+          <div class="col-lg-6">
+            <article class="project-card h-100">
+              <h5>Physical Design Flow — Udemy (Jun 2024 – Aug 2024)</h5>
+              <p class="mb-0">Hands-on understanding of floorplanning, CTS, routing, DRC, and timing closure flow fundamentals.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="impact" class="section-pad">
+      <div class="container">
+        <h2 class="section-title mb-4">Impact Snapshot</h2>
+        <div class="row g-4 text-center">
+          <div class="col-6 col-md-3">
+            <article class="project-card h-100 py-4">
+              <h3 class="fw-bold mb-1">9.06</h3>
+              <p class="mb-0">M.Tech CPI</p>
+            </article>
+          </div>
+          <div class="col-6 col-md-3">
+            <article class="project-card h-100 py-4">
+              <h3 class="fw-bold mb-1">8+</h3>
+              <p class="mb-0">Core VLSI Projects</p>
+            </article>
+          </div>
+          <div class="col-6 col-md-3">
+            <article class="project-card h-100 py-4">
+              <h3 class="fw-bold mb-1">5,000+</h3>
+              <p class="mb-0">Learners Impacted</p>
+            </article>
+          </div>
+          <div class="col-6 col-md-3">
+            <article class="project-card h-100 py-4">
+              <h3 class="fw-bold mb-1">3rd/40+</h3>
+              <p class="mb-0">e-Baja Team Rank</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section-pad alt-bg">
+      <div class="container text-center">
+        <h2 class="section-title">Let’s Build Next-Gen Silicon</h2>
+        <p class="mb-4">Open to high-impact VLSI, architecture, and DFT collaborations.</p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <a class="btn btn-tech btn-lg" href="mailto:viplawmehta0802@gmail.com" id="contact-email-btn">Email Me</a>
+          <a class="btn btn-outline-light btn-lg" href="tel:+919113320314" id="contact-phone-btn">Call Me</a>
+          <a class="btn btn-outline-info btn-lg" href="https://www.linkedin.com/in/viplawkumar0802/" target="_blank" rel="noopener noreferrer" id="contact-linkedin-btn">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-4 text-center text-light-emphasis">
+    ©️ <span id="year"></span> Electrical Engineer Portfolio • VLSI Domain
+  </footer>
+
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+
+  <div class="modal fade" id="adminAuthModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content admin-modal">
+        <div class="modal-header">
+          <h5 class="modal-title">Admin Access</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-light-emphasis small mb-2">First login sets your Admin ID and password. Later logins require both.</p>
+          <input type="text" class="form-control mb-2" id="admin-username" placeholder="Enter admin ID" />
+          <input type="password" class="form-control" id="admin-password" placeholder="Enter admin password" />
+          <div class="small mt-2" id="admin-auth-msg"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-tech" id="admin-auth-submit">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="adminPanel" aria-labelledby="adminPanelLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="adminPanelLabel">Portfolio Admin Panel</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p class="small text-light-emphasis">Edit JSON below and save. Use visibility: "public" or "private" in projects/experience.</p>
+      <textarea class="form-control admin-json" id="admin-json-editor"></textarea>
+      <div class="d-grid gap-2 mt-3">
+        <button class="btn btn-tech" id="admin-save-btn" type="button">Save Content</button>
+        <button class="btn btn-outline-warning" id="admin-reset-btn" type="button">Reset to Default</button>
+        <button class="btn btn-outline-danger" id="admin-logout-btn" type="button">Logout Admin</button>
+      </div>
+      <div class="small mt-3" id="admin-save-msg"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+</body>
+</html>
